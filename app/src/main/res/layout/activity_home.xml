@@ -7,44 +7,78 @@
     tools:context="com.ebookfrenzy.finalproject.Home"
     android:background="#1C1C1C">
 
-    <GridLayout
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <ListView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/fileList"
-            android:layout_alignParentStart="true"
+            android:id="@+id/listView"
+            android:layout_weight="1"
+            android:scrollingCache="true"
+            android:smoothScrollbar="true"
+            android:clickable="false"
             android:choiceMode="multipleChoice"
-            android:layout_toLeftOf="@+id/newFile"
-            android:layout_toStartOf="@+id/newFile"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_weight="1"
-            android:background="#FFFFFF"
-            android:layout_column="0"
-            android:layout_row="0" />
+            android:background="#FFFFFF" />
 
-        <TextView
+        <GridLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Create a new file or select an existing one on the left"
-            android:id="@+id/instruction"
-            android:layout_weight="1"
-            android:textColor="#FFFFFF"
-            android:layout_gravity="center" />
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="+"
-            android:id="@+id/newFile"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_weight="0.5"
-            android:layout_gravity="bottom" />
-    </GridLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Create a new file or \n Choose an existing one on the left"
+                android:id="@+id/instructions"
+                android:layout_weight="1.05"
+                android:textColor="#BDBDBD"
+                android:layout_gravity="center_vertical"
+                android:gravity="center|center_vertical|center_horizontal"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_columnSpan="3" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New"
+                android:id="@+id/buttonNew"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_gravity="center_horizontal"
+                android:background="#1C1C1C"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Open"
+                android:id="@+id/buttonOpen"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:background="#1C1C1C"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:id="@+id/buttonDel"
+                android:layout_row="1"
+                android:layout_column="2"
+                android:background="#1C1C1C"
+                android:textColor="#FFFFFF" />
+
+        </GridLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>
