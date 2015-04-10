@@ -46,7 +46,8 @@
                 android:layout_column="2"
                 android:background="#1C1C1C"
                 android:textColor="#848484"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:onClick="openHelpTutorial" />
 
             <TextView
                 android:layout_width="match_parent"

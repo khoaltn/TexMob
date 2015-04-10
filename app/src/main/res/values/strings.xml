@@ -16,4 +16,5 @@
     <string name="buttonClearText">Clear</string>
     <string name="buttonExportMathText">Export</string>
     <string name="buttonHomeText">Home</string>
+    <string name="title_activity_help_tutorial">HelpTutorial</string>
 </resources>
