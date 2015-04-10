@@ -27,7 +27,8 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:background="#1C1C1C"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:clickable="true" />
 
         <Button
             android:layout_width="0dp"
@@ -38,7 +39,8 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:background="#1C1C1C"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:clickable="true" />
 
         <Button
             android:layout_width="0dp"
@@ -50,7 +52,8 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:background="#1C1C1C"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:clickable="true" />
 
         <Button
             android:layout_width="0dp"
@@ -61,7 +64,8 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:background="#1C1C1C"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:clickable="true" />
 
         <Button
             android:layout_width="0dp"
@@ -72,7 +76,9 @@
             android:layout_column="4"
             android:layout_gravity="center_vertical"
             android:background="#1C1C1C"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:clickable="true"
+            android:onClick="openHome" />
     </TableRow>
 
     <TableRow

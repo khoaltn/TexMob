@@ -1,9 +1,12 @@
 package com.ebookfrenzy.finalproject;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
@@ -17,6 +20,11 @@ public class Edit extends ActionBarActivity {
         setContentView(R.layout.activity_edit);
     }
 
+
+    public void openHome(View v) {
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
