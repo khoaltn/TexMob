@@ -1,0 +1,115 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent" tools:context=".MainActivity"
+    android:columnOrderPreserved="false"
+    android:useDefaultMargins="true"
+    android:id="@+id/WorkingActivity"
+    android:alignmentMode="alignMargins"
+    android:nestedScrollingEnabled="true"
+    android:background="#1C1C1C">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RowButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonSaveCodeText"
+            android:id="@+id/buttonSaveCode"
+            android:layout_column="0"
+            android:layout_columnWeight="0.1"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:background="#1C1C1C"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonTypesetText"
+            android:id="@+id/buttonTypeset"
+            android:layout_column="1"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:background="#1C1C1C"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonClearText"
+            android:id="@+id/buttonClear"
+            android:layout_column="2"
+            android:layout_columnWeight="0.1"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:background="#1C1C1C"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonExportMathText"
+            android:id="@+id/buttonExportMath"
+            android:layout_column="3"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:background="#1C1C1C"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonHomeText"
+            android:id="@+id/buttonHome"
+            android:layout_weight="1"
+            android:layout_column="4"
+            android:layout_gravity="center_vertical"
+            android:background="#1C1C1C"
+            android:textColor="#FFFFFF" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_rowWeight="1"
+        android:id="@+id/RowWorkWindo"
+        android:layout_gravity="top"
+        android:layout_above="@+id/RowButton"
+        android:layout_alignParentTop="true">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/inputLatexCode"
+            android:layout_column="0"
+            android:hint="@string/HintLatexInput"
+            android:background="#000000"
+            android:textColor="#FFFFFF"
+            android:layout_weight="1"
+            android:textColorHint="#848484"
+            android:gravity="top" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="false"
+            android:id="@+id/output"
+            android:contentDescription="@string/SampleValue"
+            android:cropToPadding="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="#FFFFFF"
+            android:layout_weight="1"
+            android:baselineAlignBottom="false" />
+    </TableRow>
+
+</RelativeLayout>
+<!-- From: file:/Users/KhoaNguyen/Documents/CollegeOfWooster/CSCI230/FinalProject/app/src/main/res/layout/activity_main.xml -->
