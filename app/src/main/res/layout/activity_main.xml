@@ -11,7 +11,6 @@
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_row="1"
         android:id="@+id/RowButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="false"
@@ -21,9 +20,8 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Save Code"
-            android:id="@+id/ButtonSaveCode"
-            android:layout_row="1"
+            android:text="@string/buttonSaveCodeText"
+            android:id="@+id/buttonSaveCode"
             android:layout_column="0"
             android:layout_columnWeight="0.1"
             android:layout_weight="1"
@@ -34,9 +32,8 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Typeset"
-            android:id="@+id/ButtonTypeset"
-            android:layout_row="1"
+            android:text="@string/buttonTypesetText"
+            android:id="@+id/buttonTypeset"
             android:layout_column="1"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
@@ -46,9 +43,8 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Clear"
-            android:id="@+id/ButtonClear"
-            android:layout_row="0"
+            android:text="@string/buttonClearText"
+            android:id="@+id/buttonClear"
             android:layout_column="2"
             android:layout_columnWeight="0.1"
             android:layout_weight="1"
@@ -59,8 +55,8 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Export"
-            android:id="@+id/ButtonExportMath"
+            android:text="@string/buttonExportMathText"
+            android:id="@+id/buttonExportMath"
             android:layout_column="3"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
@@ -70,8 +66,8 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Home"
-            android:id="@+id/ButtonHome"
+            android:text="@string/buttonHomeText"
+            android:id="@+id/buttonHome"
             android:layout_weight="1"
             android:layout_column="4"
             android:layout_gravity="center_vertical"
@@ -82,8 +78,6 @@
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_row="0"
         android:layout_rowWeight="1"
         android:id="@+id/RowWorkWindo"
         android:layout_gravity="top"
@@ -93,14 +87,13 @@
         <EditText
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:id="@+id/InputLatexCode"
-            android:layout_row="0"
+            android:id="@+id/inputLatexCode"
             android:layout_column="0"
             android:hint="@string/HintLatexInput"
             android:background="#000000"
             android:textColor="#FFFFFF"
             android:layout_weight="1"
-            android:textColorHint="#FFFFFF"
+            android:textColorHint="#848484"
             android:gravity="top" />
 
         <ImageView
@@ -108,9 +101,8 @@
             android:layout_height="match_parent"
             android:scaleType="centerInside"
             android:adjustViewBounds="false"
-            android:id="@+id/Output"
+            android:id="@+id/output"
             android:contentDescription="@string/SampleValue"
-            android:layout_row="0"
             android:cropToPadding="true"
             android:focusable="true"
             android:focusableInTouchMode="true"

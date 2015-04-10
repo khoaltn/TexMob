@@ -13,69 +13,89 @@
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
 
         <ListView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/listView"
+            android:id="@+id/fileList"
             android:layout_weight="1"
             android:scrollingCache="true"
             android:smoothScrollbar="true"
             android:clickable="false"
-            android:choiceMode="multipleChoice"
+            android:choiceMode="singleChoice"
             android:background="#FFFFFF" />
 
         <GridLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:layout_gravity="right">
 
-            <TextView
+            <Button
+                style="@style/AppTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Help"
+                android:id="@+id/buttonHelp"
+                android:layout_above="@+id/linearLayout"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:background="#1C1C1C"
+                android:textColor="#848484"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Create a new file or \n Choose an existing one on the left"
+                android:text="@string/homeInstructions"
                 android:id="@+id/instructions"
                 android:layout_weight="1.05"
-                android:textColor="#BDBDBD"
+                android:textColor="#848484"
                 android:layout_gravity="center_vertical"
                 android:gravity="center|center_vertical|center_horizontal"
-                android:layout_row="0"
+                android:layout_row="1"
                 android:layout_column="0"
                 android:layout_columnSpan="3" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New"
+                android:text="@string/buttonNewText"
                 android:id="@+id/buttonNew"
-                android:layout_row="1"
+                android:layout_row="2"
                 android:layout_column="0"
-                android:layout_gravity="center_horizontal"
-                android:background="#1C1C1C"
-                android:textColor="#FFFFFF" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Open"
-                android:id="@+id/buttonOpen"
-                android:layout_row="1"
-                android:layout_column="1"
                 android:background="#1C1C1C"
                 android:textColor="#FFFFFF"
+                android:layout_columnWeight="1"
                 android:layout_gravity="center_horizontal" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delete"
+                android:text="@string/buttonOpenText"
+                android:id="@+id/buttonOpen"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:background="#1C1C1C"
+                android:textColor="#FFFFFF"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonDelText"
                 android:id="@+id/buttonDel"
-                android:layout_row="1"
+                android:layout_row="2"
                 android:layout_column="2"
                 android:background="#1C1C1C"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:layout_columnWeight="1" />
 
         </GridLayout>
 

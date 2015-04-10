@@ -1,9 +1,19 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">TexMob</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
     <string name="SampleValue">Sample</string>
     <string name="HintLatexInput">Type LaTeX here...</string>
-    <string name="title_activity_first_tutorial">FirstTutorial</string>
+    <string name="title_activity_home">Home</string>
+    <string name="homeInstructions">Create a new file or \n Choose an existing one...</string>
+    <string name="buttonDelText">Delete</string>
+    <string name="buttonOpenText">Open</string>
+    <string name="buttonNewText">New</string>
+    <string name="buttonSaveCodeText">Save Code</string>
+    <string name="buttonTypesetText">Typeset</string>
+    <string name="buttonClearText">Clear</string>
+    <string name="buttonExportMathText">Export</string>
+    <string name="buttonHomeText">Home</string>
 </resources>
