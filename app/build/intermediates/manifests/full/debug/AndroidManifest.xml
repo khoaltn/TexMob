@@ -13,11 +13,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.ebookfrenzy.finalproject.MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="landscape" >
-        </activity>
+
+        <!-- First activity when entering the app -->
         <activity
             android:name="com.ebookfrenzy.finalproject.Home"
             android:label="@string/app_name"
@@ -28,9 +25,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Editing and typesetting activity -->
+        <activity
+            android:name="com.ebookfrenzy.finalproject.Edit"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
+        </activity>
+
+        <!-- Help/Tutorial activity -->
         <activity
             android:name="com.ebookfrenzy.finalproject.HelpTutorial"
-            android:label="@string/title_activity_help_tutorial"
+            android:label="@string/app_name"
             android:screenOrientation="landscape" >
         </activity>
     </application>
