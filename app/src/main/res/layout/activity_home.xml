@@ -47,7 +47,8 @@
                 android:background="#1C1C1C"
                 android:textColor="#848484"
                 android:textStyle="italic"
-                android:onClick="openHelpTutorial" />
+                android:onClick="openHelpTutorial"
+                android:clickable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -73,7 +74,9 @@
                 android:background="#1C1C1C"
                 android:textColor="#FFFFFF"
                 android:layout_columnWeight="1"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:onClick="openEdit"
+                android:clickable="true" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -85,7 +88,8 @@
                 android:background="#1C1C1C"
                 android:textColor="#FFFFFF"
                 android:layout_columnWeight="1"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:clickable="true" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -96,7 +100,8 @@
                 android:layout_column="2"
                 android:background="#1C1C1C"
                 android:textColor="#FFFFFF"
-                android:layout_columnWeight="1" />
+                android:layout_columnWeight="1"
+                android:clickable="true" />
 
         </GridLayout>
 
