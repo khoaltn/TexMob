@@ -1,5 +1,6 @@
 package com.ebookfrenzy.finalproject;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,8 +11,6 @@ import android.widget.Button;
 
 public class Home extends ActionBarActivity {
 
-    //private Button buttonHelp = (Button) findViewById(R.id.buttonHelp);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +19,8 @@ public class Home extends ActionBarActivity {
 
     // Call openHelpTutorial() when the user presses Help. This opens the HelpTutorial activity
     public void openHelpTutorial(View v) {
-
+        Intent intent = new Intent(this, HelpTutorial.class);
+        startActivity(intent);
     }
 
     @Override
