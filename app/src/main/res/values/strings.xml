@@ -17,4 +17,17 @@
     <string name="buttonExportMathText">Export</string>
     <string name="buttonHomeText">Home</string>
     <string name="title_activity_help_tutorial">HelpTutorial</string>
+
+    <!-- Tutorial instructions -->
+    <string name="tutorial1Text">
+        First, create a new file or choose an existing one from the list on your left to open and edit, or to delete it.</string>
+    <string name="tutorial2Text">
+        Type your LaTeX code where indicated.
+        Press Save Code to save your changes in the code.
+        Press Typeset to generate the image.    </string>
+    <string name="tutorial3Text">
+        Press Clear if you are sure you want to delete everything.
+        Press Export to save the image to your Photos.
+        Press Home to go back to Home screen.
+    </string>
 </resources>

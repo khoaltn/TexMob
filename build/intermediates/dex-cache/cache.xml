@@ -29,5 +29,12 @@
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
         <dex dex="/Users/KhoaNguyen/Documents/CollegeOfWooster/CSCI230/FinalProject/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-df1d17d240e917a09dec2a4dc580d9e912583661.jar" />
     </item>
+    <item
+        jar="/Users/KhoaNguyen/Documents/CollegeOfWooster/CSCI230/FinalProject/app/libs/jlatexmath-1.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7f38fb50445bf3f617fe6baed00af29cc1f02b80">
+        <dex dex="/Users/KhoaNguyen/Documents/CollegeOfWooster/CSCI230/FinalProject/app/build/intermediates/pre-dexed/debug/jlatexmath-1.0.3-480170b4a38dce6b33342b1e60f538e44f812a9e.jar" />
+    </item>
 
 </items>

@@ -1,0 +1,31 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="com.ebookfrenzy.finalproject.HelpTutorial" tools:ignore="MergeRootFrame"
+    android:background="#1C1C1C">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=">"
+        android:background="@null"
+        android:id="@+id/buttonNext"
+        android:layout_gravity="right|bottom"
+        android:clickable="true"
+        android:textColor="#FFFFFF"
+        android:onClick="openTutorial2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tutorial1Text"
+        android:id="@+id/instruction1"
+        android:layout_gravity="center"
+        android:textColor="#FFFFFF"
+        android:gravity="center_horizontal"
+        android:paddingLeft="@dimen/abc_action_bar_icon_vertical_padding_material"
+        android:paddingRight="@dimen/abc_action_bar_icon_vertical_padding_material"
+        android:textSize="@dimen/abc_text_size_medium_material" />
+
+
+</FrameLayout>

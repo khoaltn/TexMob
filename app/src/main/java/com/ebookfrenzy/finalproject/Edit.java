@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import org.scilab.forge.jlatexmath.TeXConstants;
-import org.scilab.forge.jlatexmath.TeXFormula;
-import org.scilab.forge.jlatexmath.TeXIcon;
-
+import android.widget.EditText;
 
 public class Edit extends ActionBarActivity {
+
+    EditText input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +18,14 @@ public class Edit extends ActionBarActivity {
         setContentView(R.layout.activity_edit);
     }
 
-
-    public void openHome(View v) {
+    public void openHomeFromEdit(View v) {
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
+    }
+
+    public void clearAll(View v) {
+        input = (EditText) findViewById(R.id.inputLatexCode);
+        input.setText("");
     }
 
     @Override

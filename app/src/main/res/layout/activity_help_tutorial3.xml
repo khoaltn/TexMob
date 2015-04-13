@@ -1,0 +1,33 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="com.ebookfrenzy.finalproject.HelpTutorial" tools:ignore="MergeRootFrame"
+    android:background="#1C1C1C"
+    android:clickable="true">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:background="@null"
+        android:id="@+id/buttonExit"
+        android:layout_gravity="right|bottom"
+        android:clickable="true"
+        android:textColor="#FFFFFF"
+        style="@style/AppTheme"
+        android:onClick="openHomeFromTutorial" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tutorial3Text"
+        android:id="@+id/instruction3"
+        android:layout_gravity="center"
+        android:textColor="#FFFFFF"
+        android:paddingLeft="@dimen/abc_action_bar_icon_vertical_padding_material"
+        android:paddingRight="@dimen/abc_action_bar_icon_vertical_padding_material"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/abc_text_size_medium_material" />
+
+
+</FrameLayout>
