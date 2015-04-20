@@ -17,26 +17,21 @@ import java.io.InputStream;
 
 public class Edit extends ActionBarActivity {
 
-    private EditText input = (EditText) findViewById(R.id.inputLatexCode);
+    private EditText input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        input = (EditText) findViewById(R.id.inputLatexCode);
+
         Intent intentReceived = getIntent();
         String fileName = intentReceived.getStringExtra(Home.EXTRA_MESSAGE);
 
-        if (Home.isExternalStorageReadable() && Home.isExternalStorageWritable()) {
-            Home.currentFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName);
-        }
-        else {
-            Home.currentFile = new File(getApplicationContext().getFilesDir(), fileName);
-        }
-
         InputStream istream = null;
         try {
-            istream = new BufferedInputStream(new FileInputStream(Home.currentFile));
+            istream = new BufferedInputStream(new FileInputStream(fileName));
             byte in[] = new byte[0];
             istream.read(in);
             input.setText(in.toString());

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -32,33 +33,34 @@ public class Home extends ActionBarActivity {
         setContentView(R.layout.activity_home);
 
         listView = (ListView) findViewById(R.id.list);
+        ArrayList<String> myFiles = new ArrayList<>();
+
+        File buffer, directory;
 
         // Try to save file on External Storage. If unavailable, then save file on Internal Storage.
         if (isExternalStorageReadable() && isExternalStorageWritable()) {
-            currentFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "untitled");
+            buffer = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
         }
         else {
-            currentFile = new File(getApplicationContext().getFilesDir(), "untitled");
-        }
-        currentFile.setWritable(true);
-        Toast toast = Toast.makeText(getApplicationContext(), currentFile.getPath().toString(), Toast.LENGTH_SHORT);
-        toast.show();
-
-        FileOutputStream ostream;
-
-        try {
-            ostream = openFileOutput(currentFile.getName(), Context.MODE_PRIVATE);
-            ostream.write("This is a test".getBytes());
-            ostream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            buffer = getApplicationContext().getFilesDir();
         }
 
+        directory = Environment.getExternalStorageDirectory();
+        directory.mkdirs();
 
-        ArrayList<String> myFiles = new ArrayList<>();
+        File[] contents = directory.listFiles();
 
-// INCOMPLETE: For all files in Directory, add file name
-        myFiles.add(currentFile.getName());
+        if (contents != null) {
+            if (contents.length == 0) {
+                currentFile = new File(buffer, "untitled");
+                currentFile.setWritable(true);
+                myFiles.add(currentFile.getPath());
+            }
+            else {
+                for (int i = 0; i < contents.length; i++) { myFiles.add(contents[i].getPath()); }
+            }
+        }
+        else myFiles.add("none found");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_selectable_list_item, myFiles);
@@ -73,23 +75,19 @@ public class Home extends ActionBarActivity {
         startActivity(intent);
     }
 
-//**********INCOMPLETE
-    // Call openEdit() when the user presses New or Open.
-    public void openEdit(View v) {
-        listView = (ListView) findViewById(R.id.list);
-        Button buttonNew = (Button) findViewById(R.id.buttonNew);
-        Button buttonOpen = (Button) findViewById(R.id.buttonOpen);
+    public void openNew(View v) {
+        Intent intent = new Intent(this, Edit.class);
+        startActivity(intent);
+    }
 
-        if (v == buttonNew) {
-// Add code to create new file
-            Intent intent = new Intent(this, Edit.class);
-            startActivity(intent);
-        }
-        else if (v == buttonOpen) {
+    // Called when the user presses Open.
+    public void openExisting(View v) {
+        listView = (ListView) findViewById(R.id.list);
 // Add code to open existing file
-            String selectedFile = (String) listView.getSelectedItem();
-            if (selectedFile != "") {
-                currentFile = new File(getApplicationContext().getFilesDir(), selectedFile);
+            TextView selectedFile = (TextView) listView.getSelectedItem();
+
+            if (selectedFile != null) {
+                currentFile = new File(getApplicationContext().getFilesDir(), selectedFile.getText().toString());
 
                 Intent intent = new Intent(this, Edit.class);
                 intent.putExtra(EXTRA_MESSAGE, currentFile.getName());
@@ -99,7 +97,7 @@ public class Home extends ActionBarActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Please choose an existing file on your left.", Toast.LENGTH_SHORT);
                 toast.show();
             }
-        }
+
     }
 //**********INCOMPLETE
 
