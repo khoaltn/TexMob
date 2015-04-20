@@ -52,7 +52,8 @@
                 android:layout_columnWeight="1"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
-                android:nestedScrollingEnabled="false" />
+                android:nestedScrollingEnabled="false"
+                android:onClick="openExisting" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -92,8 +93,9 @@
                 android:textColor="#FFFFFF"
                 android:layout_columnWeight="1"
                 android:layout_gravity="center_horizontal"
-                android:onClick="openEdit"
-                android:clickable="true" />
+                android:onClick="openNew"
+                android:clickable="true"
+                android:nestedScrollingEnabled="false" />
 
             <Button
                 style="@style/AppTheme"

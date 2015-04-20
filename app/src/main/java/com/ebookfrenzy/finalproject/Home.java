@@ -35,32 +35,28 @@ public class Home extends ActionBarActivity {
         listView = (ListView) findViewById(R.id.list);
         ArrayList<String> myFiles = new ArrayList<>();
 
-        File buffer, directory;
+        File directory;
 
         // Try to save file on External Storage. If unavailable, then save file on Internal Storage.
-        if (isExternalStorageReadable() && isExternalStorageWritable()) {
-            buffer = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        /*if (isExternalStorageReadable() && isExternalStorageWritable()) {
+            directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath(), "TexMob");
         }
-        else {
-            buffer = getApplicationContext().getFilesDir();
+        else*/ {
+            directory = new File(getApplicationContext().getFilesDir().getPath(), "TexMob");
         }
-
-        directory = Environment.getExternalStorageDirectory();
         directory.mkdirs();
 
-        File[] contents = directory.listFiles();
-
-        if (contents != null) {
+        if (directory.isDirectory()) {
+            File[] contents = directory.listFiles();
             if (contents.length == 0) {
-                currentFile = new File(buffer, "untitled");
-                currentFile.setWritable(true);
-                myFiles.add(currentFile.getPath());
+                currentFile = new File(directory, "untitled");
+                myFiles.add(currentFile.getName());
             }
             else {
                 for (int i = 0; i < contents.length; i++) { myFiles.add(contents[i].getPath()); }
             }
         }
-        else myFiles.add("none found");
+        else myFiles.add("No files found");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_selectable_list_item, myFiles);
