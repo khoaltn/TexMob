@@ -53,7 +53,7 @@ public class Home extends ActionBarActivity {
                 myFiles.add(currentFile.getName());
             }
             else {
-                for (int i = 0; i < contents.length; i++) { myFiles.add(contents[i].getPath()); }
+                for (int i = 0; i < contents.length; i++) { myFiles.add(contents[i].getName()); }
             }
         }
         else myFiles.add("No files found");
