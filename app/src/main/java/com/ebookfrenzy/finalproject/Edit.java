@@ -1,6 +1,7 @@
 package com.ebookfrenzy.finalproject;
 
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,14 +9,48 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 public class Edit extends ActionBarActivity {
 
-    EditText input;
+    private EditText input = (EditText) findViewById(R.id.inputLatexCode);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+
+        Intent intentReceived = getIntent();
+        String fileName = intentReceived.getStringExtra(Home.EXTRA_MESSAGE);
+
+        if (Home.isExternalStorageReadable() && Home.isExternalStorageWritable()) {
+            Home.currentFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName);
+        }
+        else {
+            Home.currentFile = new File(getApplicationContext().getFilesDir(), fileName);
+        }
+
+        InputStream istream = null;
+        try {
+            istream = new BufferedInputStream(new FileInputStream(Home.currentFile));
+            byte in[] = new byte[0];
+            istream.read(in);
+            input.setText(in.toString());
+        } catch (Exception e) { e.printStackTrace(); }
+        finally {
+            if (istream != null) {
+                try {
+                    istream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 
     public void openHomeFromEdit(View v) {
@@ -24,7 +59,6 @@ public class Edit extends ActionBarActivity {
     }
 
     public void clearAll(View v) {
-        input = (EditText) findViewById(R.id.inputLatexCode);
         input.setText("");
     }
 
