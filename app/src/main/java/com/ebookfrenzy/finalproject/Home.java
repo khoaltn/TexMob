@@ -1,6 +1,5 @@
 package com.ebookfrenzy.finalproject;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
@@ -9,13 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 
@@ -23,7 +20,7 @@ public class Home extends ActionBarActivity {
 
     public static File currentFile;
 
-    public ListView listView;
+    public ListView list;
 
     public final static String EXTRA_MESSAGE = "com.ebookfrenzy.finalproject.MESSAGE";
 
@@ -32,12 +29,14 @@ public class Home extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        listView = (ListView) findViewById(R.id.list);
+        list = (ListView) findViewById(R.id.list);
         ArrayList<String> myFiles = new ArrayList<>();
 
         File directory;
 
         // Try to save file on External Storage. If unavailable, then save file on Internal Storage.
+        // On emulator, the external storage does not really work, so for now we stick with the internal storage.
+
         /*if (isExternalStorageReadable() && isExternalStorageWritable()) {
             directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath(), "TexMob");
         }
@@ -61,7 +60,7 @@ public class Home extends ActionBarActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_selectable_list_item, myFiles);
 
-        listView.setAdapter(adapter);
+        list.setAdapter(adapter);
     }
 
 
@@ -78,24 +77,26 @@ public class Home extends ActionBarActivity {
 
     // Called when the user presses Open.
     public void openExisting(View v) {
-        listView = (ListView) findViewById(R.id.list);
-// Add code to open existing file
-            TextView selectedFile = (TextView) listView.getSelectedItem();
+        list = (ListView) findViewById(R.id.list);
 
-            if (selectedFile != null) {
-                currentFile = new File(getApplicationContext().getFilesDir(), selectedFile.getText().toString());
+        // Add code to open existing file
+        TextView selectedFile = (TextView) list.getChildAt(list.getCheckedItemPosition());
 
-                Intent intent = new Intent(this, Edit.class);
-                intent.putExtra(EXTRA_MESSAGE, currentFile.getName());
-                startActivity(intent);
-            }
-            else {
-                Toast toast = Toast.makeText(getApplicationContext(), "Please choose an existing file on your left.", Toast.LENGTH_SHORT);
-                toast.show();
-            }
+        if (selectedFile == null || selectedFile.getText().toString().equals("No files found")) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Please choose an existing file or create a new one.", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else {
+            currentFile = new File(getApplicationContext().getFilesDir(), selectedFile.getText().toString());
+
+            Intent intent = new Intent(this, Edit.class);
+            intent.putExtra(EXTRA_MESSAGE, currentFile.getName());
+            startActivity(intent);
+        }
 
     }
-//**********INCOMPLETE
+    //**********INCOMPLETE
 
     public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
@@ -131,7 +132,6 @@ public class Home extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

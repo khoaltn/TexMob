@@ -10,7 +10,7 @@
 
         <ListView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:id="@+id/list"
             android:layout_weight="1"
             android:scrollingCache="true"
@@ -18,8 +18,10 @@
             android:choiceMode="singleChoice"
             android:background="#FFFFFF"
             android:clickable="true"
-            android:listSelector="@color/material_blue_grey_800"
-            android:fastScrollAlwaysVisible="true" />
+            android:listSelector="#848484"
+            android:fastScrollAlwaysVisible="true"
+            android:divider="@color/material_blue_grey_800"
+            android:dividerHeight="@dimen/abc_control_inset_material" />
 
         <GridLayout
             android:layout_width="0dp"
