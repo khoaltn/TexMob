@@ -48,7 +48,7 @@ public class Home extends ActionBarActivity {
         if (directory.isDirectory()) {
             File[] contents = directory.listFiles();
             if (contents.length == 0) {
-                currentFile = new File(directory, "untitled");
+                currentFile = new File(directory, "your_first_file");
                 myFiles.add(currentFile.getName());
             }
             else {
@@ -81,17 +81,16 @@ public class Home extends ActionBarActivity {
 
         // Add code to open existing file
         TextView selectedFile = (TextView) list.getChildAt(list.getCheckedItemPosition());
+        String fileName = selectedFile.getText().toString();
 
-        if (selectedFile == null || selectedFile.getText().toString().equals("No files found")) {
+        if (selectedFile == null || fileName.equals("No files found")) {
             Toast toast = Toast.makeText(getApplicationContext(),
                     "Please choose an existing file or create a new one.", Toast.LENGTH_LONG);
             toast.show();
         }
         else {
-            currentFile = new File(getApplicationContext().getFilesDir(), selectedFile.getText().toString());
-
             Intent intent = new Intent(this, Edit.class);
-            intent.putExtra(EXTRA_MESSAGE, currentFile.getName());
+            intent.putExtra(EXTRA_MESSAGE, fileName);
             startActivity(intent);
         }
 
@@ -100,10 +99,7 @@ public class Home extends ActionBarActivity {
 
     public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
     public static boolean isExternalStorageReadable() {
