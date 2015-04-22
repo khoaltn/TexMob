@@ -77,4 +77,11 @@ public class Edit extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * This method is responsible for handling the button click for the typeset option.
+     */
+    public void onClick(View v) {
+
+    }
 }
