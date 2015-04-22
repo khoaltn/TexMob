@@ -11,10 +11,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.CharBuffer;
 
 public class Edit extends ActionBarActivity {
 
@@ -27,6 +32,21 @@ public class Edit extends ActionBarActivity {
 
         Intent intentReceived = getIntent();
         String fileName = intentReceived.getStringExtra(Home.EXTRA_MESSAGE);
+
+        File currentFile = new File(Home.directory.getAbsolutePath(), fileName);
+
+        //INCOMPLETE CODE
+        try {
+            BufferedReader bufferedReader = new BufferedReader( new FileReader(currentFile.getAbsolutePath()));
+
+            String data = bufferedReader.readLine();
+            bufferedReader.close();
+
+            input.setText(data.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //INCOMPLETE CODE
 
         Toast toast = Toast.makeText(getApplicationContext(), fileName, Toast.LENGTH_LONG);
         toast.show();

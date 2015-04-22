@@ -68,7 +68,8 @@
                 android:textColor="#FFFFFF"
                 android:layout_columnWeight="1"
                 android:clickable="true"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:onClick="deleteFile" />
 
             <TextView
                 android:layout_width="match_parent"
