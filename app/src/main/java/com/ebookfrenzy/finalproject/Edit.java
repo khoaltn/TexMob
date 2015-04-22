@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -27,23 +28,8 @@ public class Edit extends ActionBarActivity {
         Intent intentReceived = getIntent();
         String fileName = intentReceived.getStringExtra(Home.EXTRA_MESSAGE);
 
-        InputStream istream = null;
-        try {
-            istream = new BufferedInputStream(new FileInputStream(fileName));
-            byte in[] = new byte[0];
-            istream.read(in);
-            input.setText(in.toString());
-        } catch (Exception e) { e.printStackTrace(); }
-        finally {
-            if (istream != null) {
-                try {
-                    istream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
+        Toast toast = Toast.makeText(getApplicationContext(), fileName, Toast.LENGTH_LONG);
+        toast.show();
     }
 
     public void openHomeFromEdit(View v) {

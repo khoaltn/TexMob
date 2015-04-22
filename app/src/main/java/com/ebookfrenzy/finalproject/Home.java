@@ -23,6 +23,8 @@ public class Home extends ActionBarActivity {
 
     public ListView list;
 
+    public File directory;
+
     public final static String EXTRA_MESSAGE = "com.ebookfrenzy.finalproject.MESSAGE";
 
     @Override
@@ -33,7 +35,7 @@ public class Home extends ActionBarActivity {
         list = (ListView) findViewById(R.id.list);
         ArrayList<String> myFiles = new ArrayList<>();
 
-        File directory, currentFile;
+        File currentFile;
 
         // Try to save file on External Storage. If unavailable, then save file on Internal Storage.
         // On emulator, the external storage does not really work, so for now we stick with the internal storage.
@@ -58,7 +60,7 @@ public class Home extends ActionBarActivity {
                     ostream.write("Welcome to TexMob! Create your own Tex files to format beautiful math as it should be.");
                     ostream.close();
                 }
-                catch (IOException e) {
+                catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -83,6 +85,7 @@ public class Home extends ActionBarActivity {
 
     public void openNew(View v) {
         Intent intent = new Intent(this, Edit.class);
+        intent.putExtra(EXTRA_MESSAGE, "Untitled");
         startActivity(intent);
     }
 
@@ -104,7 +107,22 @@ public class Home extends ActionBarActivity {
             intent.putExtra(EXTRA_MESSAGE, fileName);
             startActivity(intent);
         }
+    }
 
+    public void deleteFile(View v) {
+        list = (ListView) findViewById(R.id.list);
+
+        TextView selectedFile = (TextView) list.getChildAt(list.getCheckedItemPosition());
+        String fileName = selectedFile.getText().toString();
+
+        if (selectedFile == null) {
+            Toast toast = Toast.makeText(getApplicationContext(), "File not found.", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else {
+            File trash = new File(directory.getPath(), fileName);
+            trash.delete();
+        }
     }
     //**********INCOMPLETE
 
