@@ -1,5 +1,6 @@
 package com.ebookfrenzy.finalproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
@@ -13,12 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 
 public class Home extends ActionBarActivity {
-
-    public static File currentFile;
 
     public ListView list;
 
@@ -32,7 +33,7 @@ public class Home extends ActionBarActivity {
         list = (ListView) findViewById(R.id.list);
         ArrayList<String> myFiles = new ArrayList<>();
 
-        File directory;
+        File directory, currentFile;
 
         // Try to save file on External Storage. If unavailable, then save file on Internal Storage.
         // On emulator, the external storage does not really work, so for now we stick with the internal storage.
@@ -50,6 +51,16 @@ public class Home extends ActionBarActivity {
             if (contents.length == 0) {
                 currentFile = new File(directory, "your_first_file");
                 myFiles.add(currentFile.getName());
+
+                // Write something into the first file
+                try {
+                    OutputStreamWriter ostream = new OutputStreamWriter(openFileOutput(currentFile.getPath(), Context.MODE_PRIVATE));
+                    ostream.write("Welcome to TexMob! Create your own Tex files to format beautiful math as it should be.");
+                    ostream.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             else {
                 for (int i = 0; i < contents.length; i++) { myFiles.add(contents[i].getName()); }

@@ -17,14 +17,12 @@ import java.io.InputStream;
 
 public class Edit extends ActionBarActivity {
 
-    private EditText input;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        input = (EditText) findViewById(R.id.inputLatexCode);
+        EditText input = (EditText) findViewById(R.id.inputLatexCode);
 
         Intent intentReceived = getIntent();
         String fileName = intentReceived.getStringExtra(Home.EXTRA_MESSAGE);
@@ -54,6 +52,7 @@ public class Edit extends ActionBarActivity {
     }
 
     public void clearAll(View v) {
+        EditText input = (EditText) findViewById(R.id.inputLatexCode);
         input.setText("");
     }
 
