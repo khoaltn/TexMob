@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ip_addr">10.0.2.2:6666</string>
+    <string name="ip_addr">http://10.0.2.2:6666</string>
 </resources>

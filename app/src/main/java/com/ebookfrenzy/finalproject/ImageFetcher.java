@@ -2,6 +2,7 @@ package com.ebookfrenzy.finalproject;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.Editable;
 import android.widget.ImageView;
 
 import java.io.BufferedInputStream;
@@ -21,6 +22,7 @@ public class ImageFetcher {
     public static void putImageToView(String latex, ImageView view) {
         URL url = null;
         try {
+            System.out.println("here");
             url = new URL(view.getResources().getString(R.string.ip_addr));
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
@@ -34,9 +36,11 @@ public class ImageFetcher {
             view.setImageBitmap(b);
         } catch (MalformedURLException e) {
             e.printStackTrace();
+            System.out.println("Error at putImageToView");
             return;
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Error at putImageToView");
             return;
         }
     }

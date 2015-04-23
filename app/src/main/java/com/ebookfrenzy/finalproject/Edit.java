@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -68,6 +69,7 @@ public class Edit extends ActionBarActivity {
      * This method is responsible for handling the button click for the typeset option.
      */
     public void onClick(View v) {
-
+        ImageFetcher.putImageToView(((EditText) findViewById(R.id.inputLatexCode)).getText().toString(),
+                                     (ImageView) findViewById(R.id.output));
     }
 }

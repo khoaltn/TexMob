@@ -1467,11 +1467,12 @@ containing a value of this type.
         public static final int buttonTypesetText=0x7f0c001b;
         public static final int hello_world=0x7f0c001c;
         public static final int homeInstructions=0x7f0c001d;
-        public static final int title_activity_help_tutorial=0x7f0c001e;
-        public static final int title_activity_home=0x7f0c001f;
-        public static final int tutorial1Text=0x7f0c0020;
-        public static final int tutorial2Text=0x7f0c0021;
-        public static final int tutorial3Text=0x7f0c0022;
+        public static final int ip_addr=0x7f0c001e;
+        public static final int title_activity_help_tutorial=0x7f0c001f;
+        public static final int title_activity_home=0x7f0c0020;
+        public static final int tutorial1Text=0x7f0c0021;
+        public static final int tutorial2Text=0x7f0c0022;
+        public static final int tutorial3Text=0x7f0c0023;
     }
     public static final class style {
         /**  Customize your theme here. 
