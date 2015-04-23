@@ -112,7 +112,7 @@
             android:adjustViewBounds="true"
             android:id="@+id/output"
             android:contentDescription="@string/SampleValue"
-            android:cropToPadding="true"
+            android:cropToPadding="false"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:background="#FFFFFF"

@@ -1,13 +1,17 @@
 package com.ebookfrenzy.finalproject;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +44,7 @@ public class Home extends ActionBarActivity {
         // On emulator, the external storage does not really work, so for now we stick with the internal storage.
 
         /*if (isExternalStorageReadable() && isExternalStorageWritable()) {
-            directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath(), "TexMob");
+            directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath(), "TexMob");
         }
         else*/ {
             directory = new File(getApplicationContext().getFilesDir().getAbsolutePath(), "TexMob");
@@ -56,7 +60,7 @@ public class Home extends ActionBarActivity {
                 // Write something into the first file
                 try {
                     FileWriter ostream = new FileWriter(currentFile.getAbsolutePath(), true);
-                    ostream.write("Welcome to TexMob! Create your own Tex files to format beautiful math as it should be.");
+                    ostream.write("%Welcome to TexMob! Create your own Tex files to format beautiful math as it should be.");
                     ostream.close();
                 }
                 catch (Exception e) {
@@ -82,35 +86,36 @@ public class Home extends ActionBarActivity {
         startActivity(intent);
     }
 
-    // CHECK FOR SAME NAME IN THE FOLDER!!!
+
     // Called when the user presses New.
     public void openNew(View v) {
         DialogAskNewFileName dialog = new DialogAskNewFileName();
         dialog.show(getFragmentManager(), "NewFile");
     }
 
-    // Called when the user presses Open.
+    // Open chosen file when the user presses Open.
     public void openExisting(View v) {
         list = (ListView) findViewById(R.id.list);
 
         // to open existing file
         TextView selectedFile = (TextView) list.getChildAt(list.getCheckedItemPosition());
-        String fileName = selectedFile.getText().toString();
-        File existingFile = new File(directory.getPath(), fileName);
+        if (selectedFile != null) {
+            String fileName = selectedFile.getText().toString();
+            File existingFile = new File(directory.getPath(), fileName);
 
-        if (!existingFile.exists() || fileName.equals("No files found")) {
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Please choose an existing file or create a new one.", Toast.LENGTH_LONG);
-            toast.show();
-        }
-        else {
-            Intent intent = new Intent(this, Edit.class);
-            intent.putExtra(EXTRA_MESSAGE, fileName);
-            startActivity(intent);
+            if (!existingFile.exists() || fileName.equals("No files found")) {
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Please choose an existing file or create a new one.", Toast.LENGTH_LONG);
+                toast.show();
+            } else {
+                Intent intent = new Intent(this, Edit.class);
+                intent.putExtra(EXTRA_MESSAGE, fileName);
+                startActivity(intent);
+            }
         }
     }
 
-    // Called when the user presses Delete.
+    // Delete chosen file when the user presses Delete.
     public void deleteFile(View v) {
         list = (ListView) findViewById(R.id.list);
         int deletedFileIndex = list.getCheckedItemPosition();
@@ -126,19 +131,77 @@ public class Home extends ActionBarActivity {
                 toast.show();
             } else {
                 trash.delete();
-            }
 
-            adapter.remove(myFiles.get(deletedFileIndex));
-            adapter.notifyDataSetChanged();
+                adapter.remove(myFiles.get(deletedFileIndex));
+                list.clearChoices();
+                adapter.setNotifyOnChange(true);
+                adapter.notifyDataSetChanged();
+            }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // ADD CODE FOR RENAME HERE!!!
+    // Rename chosen file when user presses Rename.
     public void renameFile(View v) {
+        list = (ListView) findViewById(R.id.list);
+        final int renamedFileIndex = list.getCheckedItemPosition();
+        final TextView selectedFile = (TextView) list.getChildAt(renamedFileIndex);
 
+        if (selectedFile != null) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            final EditText input = new EditText(builder.getContext());
+
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
+
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String fileName = selectedFile.getText().toString();
+                    File renamedFile = new File(directory.getPath(), fileName);
+
+                    if (!Home.haveSameFileName(Home.directory, fileName)) {
+                        if (!renamedFile.exists()) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "File not found.", Toast.LENGTH_LONG);
+                            toast.show();
+                        } else {
+                            File newName = new File(directory.getPath(), input.getText().toString());
+                            boolean check = renamedFile.renameTo(newName);
+
+                            adapter.remove(myFiles.get(renamedFileIndex));
+                            myFiles.add(renamedFileIndex, newName.getName());
+                            adapter.notifyDataSetChanged();
+                            System.out.println(check);
+                        }
+                    } else {
+                        Toast toast = Toast.makeText(getApplicationContext(), "A file with the same name already exists.", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                }
+            })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .setMessage("Enter file's name: ");
+            builder.create().show();
+        }
+    }
+
+    // Check for files with the same name in the folder
+    public static boolean haveSameFileName(File dir, String fileName) {
+        if (dir.isDirectory()) {
+            File[] contents = dir.listFiles();
+            for (int i = 0; i < contents.length; i++) {
+                if (contents[i].getName().equals(fileName)) return true;
+            }
+        }
+        else if (dir.getName().equals(fileName)) return true;
+        return false;
     }
 
     // Check for external storage
