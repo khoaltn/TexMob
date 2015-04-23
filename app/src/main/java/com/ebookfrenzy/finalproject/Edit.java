@@ -121,6 +121,8 @@ public class Edit extends ActionBarActivity {
         if (b != null) {
             int width = b.getWidth();
             int height = b.getHeight();
+
+            /*
             float scaleWidth = ((float) view.getWidth()) / width;
             float scaleHeight = ((float) view.getHeight()) / height;
 
@@ -129,6 +131,9 @@ public class Edit extends ActionBarActivity {
 
             view.setBackgroundColor(Color.WHITE);
             view.setImageBitmap(Bitmap.createBitmap(b, 0, 0, width, height, matrix, false));
+            */
+
+            view.setImageBitmap(b);
         } else {
             System.out.println("no image found");
         }
