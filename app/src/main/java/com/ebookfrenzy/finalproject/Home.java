@@ -60,7 +60,7 @@ public class Home extends ActionBarActivity {
                 // Write something into the first file
                 try {
                     FileWriter ostream = new FileWriter(currentFile.getAbsolutePath(), true);
-                    ostream.write("%Welcome to TexMob! Create your own Tex files to format beautiful math as it should be.");
+                    ostream.write("%Welcome to TexMob!");
                     ostream.close();
                 }
                 catch (Exception e) {

@@ -37,7 +37,7 @@ public class DialogAskNewFileName extends DialogFragment {
 
                     try {
                         PrintWriter out = new PrintWriter(newFile);
-                        out.print("%Created on " + new Date(newFile.lastModified()));
+                        out.print("");
                         out.close();
                     }
                     catch (Exception e) {
