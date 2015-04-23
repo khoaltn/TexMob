@@ -1,6 +1,13 @@
 package com.ebookfrenzy.finalproject;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -51,6 +59,9 @@ public class Edit extends ActionBarActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 
     public void openHomeFromEdit(View v) {
@@ -103,7 +114,23 @@ public class Edit extends ActionBarActivity {
      * This method is responsible for handling the button click for the typeset option.
      */
     public void onClick(View v) {
-        ImageFetcher.putImageToView(((EditText) findViewById(R.id.inputLatexCode)).getText().toString(),
-                                     (ImageView) findViewById(R.id.output));
+        ImageFetcher fetcher = new ImageFetcher(v.getResources());
+        ImageView view = (ImageView) findViewById(R.id.output);
+        Bitmap b = fetcher.doInBackground(((TextView) findViewById(R.id.inputLatexCode)).getText().toString());
+
+        if (b != null) {
+            int width = b.getWidth();
+            int height = b.getHeight();
+            float scaleWidth = ((float) view.getWidth()) / width;
+            float scaleHeight = ((float) view.getHeight()) / height;
+
+            Matrix matrix = new Matrix();
+            matrix.postScale(scaleWidth, scaleHeight);
+
+            view.setBackgroundColor(Color.WHITE);
+            view.setImageBitmap(Bitmap.createBitmap(b, 0, 0, width, height, matrix, false));
+        } else {
+            System.out.println("no image found");
+        }
     }
 }

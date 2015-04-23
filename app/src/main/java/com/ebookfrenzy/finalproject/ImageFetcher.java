@@ -1,7 +1,10 @@
 package com.ebookfrenzy.finalproject;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.os.AsyncTask;
 import android.text.Editable;
 import android.widget.ImageView;
 
@@ -17,31 +20,41 @@ import java.net.URL;
 /**
  * Created by madmax on 4/22/15.
  */
-public class ImageFetcher {
+public class ImageFetcher extends AsyncTask<String, Void, Bitmap> {
+    private Resources resources;
 
-    public static void putImageToView(String latex, ImageView view) {
+    public ImageFetcher(Resources resources) {
+        this.resources = resources;
+    }
+
+    @Override
+    protected Bitmap doInBackground(String... params) {
         URL url = null;
         try {
-            System.out.println("here");
-            url = new URL(view.getResources().getString(R.string.ip_addr));
+            url = new URL(resources.getString(R.string.ip_addr));
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
+            if (urlConnection == null) {
+                System.out.println("Null urlConnection at doInBackground()");
+                return null;
+            }
+
             urlConnection.setDoOutput(true);
-            OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-            out.write(latex.getBytes());
+            urlConnection.setChunkedStreamingMode(0);
 
-            InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
-            Bitmap b = BitmapFactory.decodeStream(inputStream);
+            urlConnection.getOutputStream().write(params[0].getBytes());
 
-            view.setImageBitmap(b);
+            Bitmap b = BitmapFactory.decodeStream(urlConnection.getInputStream());
+
+            urlConnection.disconnect();
+            return b;
         } catch (MalformedURLException e) {
             e.printStackTrace();
             System.out.println("Error at putImageToView");
-            return;
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error at putImageToView");
-            return;
         }
+        return null;
     }
 }
