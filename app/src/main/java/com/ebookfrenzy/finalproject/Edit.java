@@ -1,7 +1,6 @@
 package com.ebookfrenzy.finalproject;
 
 import android.content.Intent;
-import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,18 +9,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.CharBuffer;
+import java.io.PrintWriter;
 
 public class Edit extends ActionBarActivity {
+
+    private File currentFile;
+    private String latexCode = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,33 +29,51 @@ public class Edit extends ActionBarActivity {
         Intent intentReceived = getIntent();
         String fileName = intentReceived.getStringExtra(Home.EXTRA_MESSAGE);
 
-        File currentFile = new File(Home.directory.getAbsolutePath(), fileName);
-
-        //INCOMPLETE CODE
         try {
-            BufferedReader bufferedReader = new BufferedReader( new FileReader(currentFile.getAbsolutePath()));
+            currentFile = new File(Home.directory.getPath(), fileName);
+            if (currentFile.exists()) {
+                try {
+                    BufferedReader bufferedReader = new BufferedReader(new FileReader(currentFile.getAbsolutePath()));
 
-            String data = bufferedReader.readLine();
-            bufferedReader.close();
+                    latexCode = bufferedReader.readLine();
+                    bufferedReader.close();
 
-            input.setText(data.toString());
-        } catch (Exception e) {
+                    input.setText(latexCode);
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Press 'Save Code' when you're done.", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            }
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
-        //INCOMPLETE CODE
-
-        Toast toast = Toast.makeText(getApplicationContext(), fileName, Toast.LENGTH_LONG);
-        toast.show();
     }
 
     public void openHomeFromEdit(View v) {
-        Intent intent = new Intent(this, Home.class);
-        startActivity(intent);
+        DialogAskIfSaved dialog = new DialogAskIfSaved();
+        dialog.show(getFragmentManager(), "isSaved");
     }
 
     public void clearAll(View v) {
         EditText input = (EditText) findViewById(R.id.inputLatexCode);
         input.setText("");
+    }
+
+    public void saveCode(View v) {
+        EditText input = (EditText) findViewById(R.id.inputLatexCode);
+        latexCode = input.getText().toString();
+
+        try {
+            PrintWriter out = new PrintWriter(currentFile);
+            out.print(latexCode);
+            out.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

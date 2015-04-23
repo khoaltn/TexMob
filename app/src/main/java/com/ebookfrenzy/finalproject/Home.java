@@ -19,7 +19,9 @@ import java.util.ArrayList;
 
 public class Home extends ActionBarActivity {
 
-    public ListView list;
+    private ListView list;
+    private ArrayList<String> myFiles = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
 
     public static File directory;
 
@@ -31,7 +33,6 @@ public class Home extends ActionBarActivity {
         setContentView(R.layout.activity_home);
 
         list = (ListView) findViewById(R.id.list);
-        ArrayList<String> myFiles = new ArrayList<>();
 
         File currentFile;
 
@@ -68,7 +69,7 @@ public class Home extends ActionBarActivity {
         }
         else myFiles.add("No files found");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_selectable_list_item, myFiles);
 
         list.setAdapter(adapter);
@@ -81,11 +82,11 @@ public class Home extends ActionBarActivity {
         startActivity(intent);
     }
 
+    // CHECK FOR SAME NAME IN THE FOLDER!!!
     // Called when the user presses New.
     public void openNew(View v) {
-        Intent intent = new Intent(this, Edit.class);
-        intent.putExtra(EXTRA_MESSAGE, "Untitled");
-        startActivity(intent);
+        DialogAskNewFileName dialog = new DialogAskNewFileName();
+        dialog.show(getFragmentManager(), "NewFile");
     }
 
     // Called when the user presses Open.
@@ -95,8 +96,9 @@ public class Home extends ActionBarActivity {
         // to open existing file
         TextView selectedFile = (TextView) list.getChildAt(list.getCheckedItemPosition());
         String fileName = selectedFile.getText().toString();
+        File existingFile = new File(directory.getPath(), fileName);
 
-        if (selectedFile == null || fileName.equals("No files found")) {
+        if (!existingFile.exists() || fileName.equals("No files found")) {
             Toast toast = Toast.makeText(getApplicationContext(),
                     "Please choose an existing file or create a new one.", Toast.LENGTH_LONG);
             toast.show();
@@ -111,18 +113,32 @@ public class Home extends ActionBarActivity {
     // Called when the user presses Delete.
     public void deleteFile(View v) {
         list = (ListView) findViewById(R.id.list);
+        int deletedFileIndex = list.getCheckedItemPosition();
 
-        TextView selectedFile = (TextView) list.getChildAt(list.getCheckedItemPosition());
-        String fileName = selectedFile.getText().toString();
+        TextView selectedFile = (TextView) list.getChildAt(deletedFileIndex);
 
-        if (selectedFile == null) {
-            Toast toast = Toast.makeText(getApplicationContext(), "File not found.", Toast.LENGTH_LONG);
-            toast.show();
-        }
-        else {
+        try {
+            String fileName = selectedFile.getText().toString();
             File trash = new File(directory.getPath(), fileName);
-            trash.delete();
+
+            if (!trash.exists()) {
+                Toast toast = Toast.makeText(getApplicationContext(), "File not found.", Toast.LENGTH_LONG);
+                toast.show();
+            } else {
+                trash.delete();
+            }
+
+            adapter.remove(myFiles.get(deletedFileIndex));
+            adapter.notifyDataSetChanged();
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ADD CODE FOR RENAME HERE!!!
+    public void renameFile(View v) {
+
     }
 
     // Check for external storage
