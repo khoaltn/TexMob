@@ -1,6 +1,5 @@
 package com.ebookfrenzy.finalproject;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
@@ -14,16 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 
 public class Home extends ActionBarActivity {
 
-    public ListView list;
+    private ListView list;
+    private ArrayList<String> myFiles = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
 
-    public File directory;
+    public static File directory;
 
     public final static String EXTRA_MESSAGE = "com.ebookfrenzy.finalproject.MESSAGE";
 
@@ -33,7 +33,6 @@ public class Home extends ActionBarActivity {
         setContentView(R.layout.activity_home);
 
         list = (ListView) findViewById(R.id.list);
-        ArrayList<String> myFiles = new ArrayList<>();
 
         File currentFile;
 
@@ -44,19 +43,19 @@ public class Home extends ActionBarActivity {
             directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath(), "TexMob");
         }
         else*/ {
-            directory = new File(getApplicationContext().getFilesDir().getPath(), "TexMob");
+            directory = new File(getApplicationContext().getFilesDir().getAbsolutePath(), "TexMob");
         }
         directory.mkdirs();
 
         if (directory.isDirectory()) {
             File[] contents = directory.listFiles();
             if (contents.length == 0) {
-                currentFile = new File(directory, "your_first_file");
+                currentFile = new File(directory.getAbsolutePath(), "your_first_file.txt");
                 myFiles.add(currentFile.getName());
 
                 // Write something into the first file
                 try {
-                    OutputStreamWriter ostream = new OutputStreamWriter(openFileOutput(currentFile.getPath(), Context.MODE_PRIVATE));
+                    FileWriter ostream = new FileWriter(currentFile.getAbsolutePath(), true);
                     ostream.write("Welcome to TexMob! Create your own Tex files to format beautiful math as it should be.");
                     ostream.close();
                 }
@@ -70,34 +69,36 @@ public class Home extends ActionBarActivity {
         }
         else myFiles.add("No files found");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_selectable_list_item, myFiles);
 
         list.setAdapter(adapter);
     }
 
 
-    // Call openHelpTutorial() when the user presses Help. This opens the HelpTutorial activity
+    // Call openHelpTutorial() when the user presses Help. This opens the HelpTutorial activity.
     public void openHelpTutorial(View v) {
         Intent intent = new Intent(this, HelpTutorial.class);
         startActivity(intent);
     }
 
+    // CHECK FOR SAME NAME IN THE FOLDER!!!
+    // Called when the user presses New.
     public void openNew(View v) {
-        Intent intent = new Intent(this, Edit.class);
-        intent.putExtra(EXTRA_MESSAGE, "Untitled");
-        startActivity(intent);
+        DialogAskNewFileName dialog = new DialogAskNewFileName();
+        dialog.show(getFragmentManager(), "NewFile");
     }
 
     // Called when the user presses Open.
     public void openExisting(View v) {
         list = (ListView) findViewById(R.id.list);
 
-        // Add code to open existing file
+        // to open existing file
         TextView selectedFile = (TextView) list.getChildAt(list.getCheckedItemPosition());
         String fileName = selectedFile.getText().toString();
+        File existingFile = new File(directory.getPath(), fileName);
 
-        if (selectedFile == null || fileName.equals("No files found")) {
+        if (!existingFile.exists() || fileName.equals("No files found")) {
             Toast toast = Toast.makeText(getApplicationContext(),
                     "Please choose an existing file or create a new one.", Toast.LENGTH_LONG);
             toast.show();
@@ -109,23 +110,38 @@ public class Home extends ActionBarActivity {
         }
     }
 
+    // Called when the user presses Delete.
     public void deleteFile(View v) {
         list = (ListView) findViewById(R.id.list);
+        int deletedFileIndex = list.getCheckedItemPosition();
 
-        TextView selectedFile = (TextView) list.getChildAt(list.getCheckedItemPosition());
-        String fileName = selectedFile.getText().toString();
+        TextView selectedFile = (TextView) list.getChildAt(deletedFileIndex);
 
-        if (selectedFile == null) {
-            Toast toast = Toast.makeText(getApplicationContext(), "File not found.", Toast.LENGTH_LONG);
-            toast.show();
-        }
-        else {
+        try {
+            String fileName = selectedFile.getText().toString();
             File trash = new File(directory.getPath(), fileName);
-            trash.delete();
+
+            if (!trash.exists()) {
+                Toast toast = Toast.makeText(getApplicationContext(), "File not found.", Toast.LENGTH_LONG);
+                toast.show();
+            } else {
+                trash.delete();
+            }
+
+            adapter.remove(myFiles.get(deletedFileIndex));
+            adapter.notifyDataSetChanged();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    //**********INCOMPLETE
 
+    // ADD CODE FOR RENAME HERE!!!
+    public void renameFile(View v) {
+
+    }
+
+    // Check for external storage
     public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
@@ -138,6 +154,7 @@ public class Home extends ActionBarActivity {
         }
         return false;
     }
+    // Check for external storage
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
