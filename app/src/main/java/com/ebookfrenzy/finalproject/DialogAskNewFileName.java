@@ -8,12 +8,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.Date;
 
 /**
  * Created by KhoaNguyen on 4/22/15.
  */
 public class DialogAskNewFileName extends DialogFragment {
-
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -26,8 +30,27 @@ public class DialogAskNewFileName extends DialogFragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                intent.putExtra(Home.EXTRA_MESSAGE, input.getText().toString());
-                startActivity(intent);
+                String fileName = input.getText().toString();
+                if (!Home.haveSameFileName(Home.directory, fileName)) {
+                    intent.putExtra(Home.EXTRA_MESSAGE, fileName);
+                    File newFile = new File(Home.directory, fileName);
+
+                    try {
+                        PrintWriter out = new PrintWriter(newFile);
+                        out.print("%Created on " + new Date(newFile.lastModified()));
+                        out.close();
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    startActivity(intent);
+
+                } else {
+                    dialog.cancel();
+                    Toast toast = Toast.makeText(builder.getContext(), "File with the same name already exists.", Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
         })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
