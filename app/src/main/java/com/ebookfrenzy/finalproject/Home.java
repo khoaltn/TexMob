@@ -27,7 +27,7 @@ public class Home extends ActionBarActivity {
     private ArrayList<String> myFiles = new ArrayList<>();
     private ArrayAdapter<String> adapter;
 
-    public static File directory;
+    public static File master, directory;
 
     public final static String EXTRA_MESSAGE = "com.ebookfrenzy.finalproject.MESSAGE";
 
@@ -44,14 +44,19 @@ public class Home extends ActionBarActivity {
         // On emulator, the external storage does not really work, so for now we stick with the internal storage.
 
         /*if (isExternalStorageReadable() && isExternalStorageWritable()) {
-            directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath(), "TexMob");
+            master = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath(), "TexMob");
         }
         else*/ {
-            directory = new File(getApplicationContext().getFilesDir().getAbsolutePath(), "TexMob");
+            master = new File(getApplicationContext().getFilesDir().getAbsolutePath(), "TexMob");
         }
+        master.mkdirs();
+
+        // Create a folder for code files
+        directory = new File(master.getAbsolutePath(), "Code");
         directory.mkdirs();
 
         if (directory.isDirectory()) {
+            // Check for the files
             File[] contents = directory.listFiles();
             if (contents.length == 0) {
                 currentFile = new File(directory.getAbsolutePath(), "your_first_file.txt");

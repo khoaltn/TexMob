@@ -6,8 +6,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
+import android.media.CameraProfile;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,13 +23,16 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 
 public class Edit extends ActionBarActivity {
 
     private File currentFile;
     private String latexCode = "";
+    private Bitmap mathImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +99,15 @@ public class Edit extends ActionBarActivity {
 
     // Send image to the photo app
     public void exportImage(View v) {
+        try {
+            String imageName = currentFile.getName() + "Output";
+            MediaStore.Images.Media.insertImage(getContentResolver(), mathImage, imageName, "Your Math");
 
+            Toast toast = Toast.makeText(getApplicationContext(), "Exported to Gallery.", Toast.LENGTH_SHORT);
+            toast.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -108,18 +122,17 @@ public class Edit extends ActionBarActivity {
             int width = b.getWidth();
             int height = b.getHeight();
 
-            /*
+
             float scaleWidth = ((float) view.getWidth()) / width;
-            float scaleHeight = ((float) view.getHeight()) / height;
+            float scaleHeight = scaleWidth;
 
             Matrix matrix = new Matrix();
             matrix.postScale(scaleWidth, scaleHeight);
 
             view.setBackgroundColor(Color.WHITE);
             view.setImageBitmap(Bitmap.createBitmap(b, 0, 0, width, height, matrix, false));
-            */
 
-            view.setImageBitmap(b);
+            mathImage = b;
         } else {
             System.out.println("no image found");
         }

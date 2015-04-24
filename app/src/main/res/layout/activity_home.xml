@@ -28,7 +28,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_gravity="right">
+            android:layout_gravity="right"
+            android:paddingLeft="@dimen/abc_action_bar_default_padding_material">
 
             <Button
                 android:layout_width="wrap_content"
