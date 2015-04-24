@@ -42,7 +42,7 @@
             android:background="#1C1C1C"
             android:textColor="#FFFFFF"
             android:clickable="true"
-            android:onClick="onClick"/>
+            android:onClick="typeSet"/>
 
         <Button
             android:layout_width="0dp"

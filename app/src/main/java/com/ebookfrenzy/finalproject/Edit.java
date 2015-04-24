@@ -82,38 +82,24 @@ public class Edit extends ActionBarActivity {
             PrintWriter out = new PrintWriter(currentFile);
             out.print(latexCode);
             out.close();
+
+            Toast toast = Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT);
+            toast.show();
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+    // Send image to the photo app
+    public void exportImage(View v) {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     /**
      * This method is responsible for handling the button click for the typeset option.
      */
-    public void onClick(View v) {
+    public void typeSet(View v) {
         ImageFetcher fetcher = new ImageFetcher(v.getResources());
         ImageView view = (ImageView) findViewById(R.id.output);
         Bitmap b = fetcher.doInBackground(((TextView) findViewById(R.id.inputLatexCode)).getText().toString());
@@ -138,4 +124,29 @@ public class Edit extends ActionBarActivity {
             System.out.println("no image found");
         }
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }
