@@ -31,7 +31,7 @@ public class DialogAskNewFileName extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String fileName = input.getText().toString();
-                if (!Home.haveSameFileName(Home.directory, fileName)) {
+                if (!Home.haveSameFileName(Home.directory, fileName) && !fileName.equals("")) {
                     intent.putExtra(Home.EXTRA_MESSAGE, fileName);
                     File newFile = new File(Home.directory, fileName);
 
@@ -48,7 +48,7 @@ public class DialogAskNewFileName extends DialogFragment {
 
                 } else {
                     dialog.cancel();
-                    Toast toast = Toast.makeText(builder.getContext(), "File with the same name already exists.", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(builder.getContext(), "Error making file. Try another name.", Toast.LENGTH_LONG);
                     toast.show();
                 }
             }

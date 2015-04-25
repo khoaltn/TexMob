@@ -127,24 +127,25 @@ public class Home extends ActionBarActivity {
 
         TextView selectedFile = (TextView) list.getChildAt(deletedFileIndex);
 
-        try {
-            String fileName = selectedFile.getText().toString();
-            File trash = new File(directory.getPath(), fileName);
+        if (selectedFile != null) {
+            try {
+                String fileName = selectedFile.getText().toString();
+                File trash = new File(directory.getPath(), fileName);
 
-            if (!trash.exists()) {
-                Toast toast = Toast.makeText(getApplicationContext(), "File not found.", Toast.LENGTH_LONG);
-                toast.show();
-            } else {
-                trash.delete();
+                if (!trash.exists()) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "File not found.", Toast.LENGTH_LONG);
+                    toast.show();
+                } else {
+                    trash.delete();
 
-                adapter.remove(myFiles.get(deletedFileIndex));
-                list.clearChoices();
-                adapter.setNotifyOnChange(true);
-                adapter.notifyDataSetChanged();
+                    adapter.remove(myFiles.get(deletedFileIndex));
+                    list.clearChoices();
+                    adapter.setNotifyOnChange(true);
+                    adapter.notifyDataSetChanged();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -164,25 +165,26 @@ public class Home extends ActionBarActivity {
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String fileName = selectedFile.getText().toString();
-                    File renamedFile = new File(directory.getPath(), fileName);
+                    String oldName = selectedFile.getText().toString();
+                    File renamedFile = new File(directory.getPath(), oldName);
 
-                    if (!Home.haveSameFileName(Home.directory, fileName)) {
-                        if (!renamedFile.exists()) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "File not found.", Toast.LENGTH_LONG);
-                            toast.show();
-                        } else {
-                            File newName = new File(directory.getPath(), input.getText().toString());
-                            boolean check = renamedFile.renameTo(newName);
+                    if (!renamedFile.exists()) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "File not found.", Toast.LENGTH_LONG);
+                        toast.show();
+                    } else {
+                        String newName = input.getText().toString();
+                        if (!Home.haveSameFileName(Home.directory, newName) && !newName.equals("")) {
+                            File newNameFile = new File(directory.getPath(), newName);
+                            boolean check = renamedFile.renameTo(newNameFile);
 
                             adapter.remove(myFiles.get(renamedFileIndex));
-                            myFiles.add(renamedFileIndex, newName.getName());
-                            adapter.notifyDataSetChanged();
+                            adapter.insert(newName, renamedFileIndex);
+
                             System.out.println(check);
+                        } else {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Error renaming file. Try another name.", Toast.LENGTH_LONG);
+                            toast.show();
                         }
-                    } else {
-                        Toast toast = Toast.makeText(getApplicationContext(), "A file with the same name already exists.", Toast.LENGTH_LONG);
-                        toast.show();
                     }
                 }
             })
@@ -194,6 +196,9 @@ public class Home extends ActionBarActivity {
                     })
                     .setMessage("Enter file's name: ");
             builder.create().show();
+
+            adapter.setNotifyOnChange(true);
+            adapter.notifyDataSetChanged();
         }
     }
 
