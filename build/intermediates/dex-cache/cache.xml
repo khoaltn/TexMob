@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="/Users/madmax/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/madmax/src/FinalProject/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-2bf41cef45263aa7e4c41bfa7cf749c3ec25ec79.jar" />
-    </item>
-    <item
-        jar="/Users/madmax/src/FinalProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jar="/Users/KhoaNguyen/Documents/CollegeOfWooster/Freshman/CSCI230/FinalProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/madmax/src/FinalProject/app/build/intermediates/pre-dexed/debug/classes-017e9ed13d34924406c3396f413007f9ea8af205.jar" />
+        <dex dex="/Users/KhoaNguyen/Documents/CollegeOfWooster/Freshman/CSCI230/FinalProject/app/build/intermediates/pre-dexed/debug/classes-745650e6089aaff6943cf1eeaa4bd9972b82c714.jar" />
     </item>
     <item
-        jar="/Users/madmax/src/FinalProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/madmax/src/FinalProject/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-ef7c41953b152972ed3d3928d323f2361c3504f1.jar" />
-    </item>
-    <item
-        jar="/Users/madmax/src/FinalProject/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jar="/Users/KhoaNguyen/Documents/CollegeOfWooster/Freshman/CSCI230/FinalProject/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/madmax/src/FinalProject/app/build/intermediates/pre-dexed/debug/classes-6d3ac307e7c3cb9d900378abf5165a0926885f79.jar" />
+        <dex dex="/Users/KhoaNguyen/Documents/CollegeOfWooster/Freshman/CSCI230/FinalProject/app/build/intermediates/pre-dexed/debug/classes-1a842c9090f701d1bafd46db652c35fd34eba267.jar" />
     </item>
     <item
-        jar="/Users/madmax/src/FinalProject/app/libs/jlatexmath-1.0.3.jar"
+        jar="/Users/KhoaNguyen/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/KhoaNguyen/Documents/CollegeOfWooster/Freshman/CSCI230/FinalProject/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-8e1b7c12135c66d42ae9960ee2ed58d69c77186d.jar" />
+    </item>
+    <item
+        jar="/Users/KhoaNguyen/Documents/CollegeOfWooster/Freshman/CSCI230/FinalProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/KhoaNguyen/Documents/CollegeOfWooster/Freshman/CSCI230/FinalProject/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-4b27183bedc5e117c369fb854ad85cc0fa8a51bb.jar" />
+    </item>
+    <item
+        jar="/Users/KhoaNguyen/Documents/CollegeOfWooster/Freshman/CSCI230/FinalProject/app/libs/jlatexmath-1.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="7f38fb50445bf3f617fe6baed00af29cc1f02b80">
-        <dex dex="/Users/madmax/src/FinalProject/app/build/intermediates/pre-dexed/debug/jlatexmath-1.0.3-9cfc603b702718ae23338a9936142545e00fd40b.jar" />
+        <dex dex="/Users/KhoaNguyen/Documents/CollegeOfWooster/Freshman/CSCI230/FinalProject/app/build/intermediates/pre-dexed/debug/jlatexmath-1.0.3-4bbde54b89a3a5153212bc98c6754d5a1397180e.jar" />
     </item>
 
 </items>

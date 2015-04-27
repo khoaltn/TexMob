@@ -135,6 +135,8 @@ public class Edit extends ActionBarActivity {
             mathImage = b;
         } else {
             System.out.println("no image found");
+            Toast toast = Toast.makeText(getApplicationContext(), "Error: Possible LaTeX code error.", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 
@@ -160,6 +162,4 @@ public class Edit extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
