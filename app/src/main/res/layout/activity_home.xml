@@ -18,9 +18,9 @@
             android:choiceMode="singleChoice"
             android:background="#FFFFFF"
             android:clickable="true"
-            android:listSelector="#848484"
+            android:listSelector="#2E5B91"
             android:fastScrollAlwaysVisible="false"
-            android:divider="@color/material_blue_grey_800"
+            android:divider="#152941"
             android:dividerHeight="@dimen/abc_control_inset_material"
             android:fastScrollEnabled="true" />
 
@@ -29,50 +29,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="right"
-            android:paddingLeft="@dimen/abc_action_bar_default_padding_material">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rename"
-                android:id="@+id/buttonRename"
-                android:layout_row="0"
-                android:layout_column="0"
-                android:background="#1C1C1C"
-                android:textColor="#FFFFFF"
-                android:layout_columnWeight="1"
-                android:clickable="true"
-                android:layout_gravity="center_horizontal"
-                android:onClick="renameFile" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/buttonOpenText"
-                android:id="@+id/buttonOpen"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:background="#1C1C1C"
-                android:textColor="#FFFFFF"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center_horizontal"
-                android:clickable="true"
-                android:nestedScrollingEnabled="false"
-                android:onClick="openExisting" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/buttonDelText"
-                android:id="@+id/buttonDel"
-                android:layout_row="0"
-                android:layout_column="2"
-                android:background="#1C1C1C"
-                android:textColor="#FFFFFF"
-                android:layout_columnWeight="1"
-                android:clickable="true"
-                android:layout_gravity="center_horizontal"
-                android:onClick="deleteFile" />
+            android:paddingLeft="@dimen/abc_action_bar_default_padding_material"
+            android:background="#152941">
 
             <TextView
                 android:layout_width="match_parent"
@@ -81,12 +39,13 @@
                 android:text="@string/homeInstructions"
                 android:id="@+id/instructions"
                 android:layout_weight="1.05"
-                android:textColor="#848484"
+                android:textColor="#FFFFFF"
                 android:layout_gravity="center_vertical"
                 android:gravity="center|center_vertical|center_horizontal"
                 android:layout_row="1"
                 android:layout_column="0"
-                android:layout_columnSpan="3" />
+                android:layout_columnSpan="2"
+                android:layout_rowSpan="1" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -97,23 +56,20 @@
                 android:layout_column="0"
                 android:background="#1C1C1C"
                 android:textColor="#FFFFFF"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="fill_horizontal"
                 android:onClick="openNew"
                 android:clickable="true"
-                android:nestedScrollingEnabled="false" />
+                android:nestedScrollingEnabled="false"
+                android:layout_rowSpan="1" />
 
             <Button
                 style="@style/AppTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Help"
+                android:text="@string/buttonHelpText"
                 android:id="@+id/buttonHelp"
-                android:layout_above="@+id/linearLayout"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
                 android:layout_row="2"
-                android:layout_column="2"
+                android:layout_column="1"
                 android:background="#1C1C1C"
                 android:textColor="#848484"
                 android:textStyle="italic"

@@ -1318,20 +1318,17 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a002e;
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
-        public static final int action_settings=0x7f0a0058;
+        public static final int action_settings=0x7f0a0057;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int always=0x7f0a0016;
         public static final int beginning=0x7f0a0013;
         public static final int buttonClear=0x7f0a0043;
-        public static final int buttonDel=0x7f0a0052;
         public static final int buttonExit=0x7f0a004d;
         public static final int buttonExportMath=0x7f0a0044;
-        public static final int buttonHelp=0x7f0a0055;
+        public static final int buttonHelp=0x7f0a0052;
         public static final int buttonHome=0x7f0a0045;
-        public static final int buttonNew=0x7f0a0054;
+        public static final int buttonNew=0x7f0a0051;
         public static final int buttonNext=0x7f0a004a;
-        public static final int buttonOpen=0x7f0a0051;
-        public static final int buttonRename=0x7f0a0050;
         public static final int buttonSaveCode=0x7f0a0041;
         public static final int buttonTypeset=0x7f0a0042;
         public static final int checkbox=0x7f0a0029;
@@ -1339,6 +1336,7 @@ containing a value of this type.
         public static final int container=0x7f0a0049;
         public static final int decor_content_parent=0x7f0a002f;
         public static final int default_activity_button=0x7f0a0024;
+        public static final int delete=0x7f0a0056;
         public static final int dialog=0x7f0a001b;
         public static final int disableHome=0x7f0a000c;
         public static final int dropdown=0x7f0a001c;
@@ -1355,8 +1353,7 @@ containing a value of this type.
         public static final int instruction1=0x7f0a004b;
         public static final int instruction2=0x7f0a004c;
         public static final int instruction3=0x7f0a004e;
-        public static final int instructions=0x7f0a0053;
-        public static final int linearLayout=0x7f0a0056;
+        public static final int instructions=0x7f0a0050;
         public static final int list=0x7f0a004f;
         public static final int listMode=0x7f0a0009;
         public static final int list_item=0x7f0a0025;
@@ -1364,10 +1361,12 @@ containing a value of this type.
         public static final int never=0x7f0a0019;
         public static final int none=0x7f0a000e;
         public static final int normal=0x7f0a000a;
+        public static final int open=0x7f0a0054;
         public static final int output=0x7f0a0048;
         public static final int progress_circular=0x7f0a0005;
         public static final int progress_horizontal=0x7f0a0006;
         public static final int radio=0x7f0a002b;
+        public static final int rename=0x7f0a0055;
         public static final int search_badge=0x7f0a0035;
         public static final int search_bar=0x7f0a0034;
         public static final int search_button=0x7f0a0036;
@@ -1386,7 +1385,7 @@ containing a value of this type.
         public static final int submit_area=0x7f0a003c;
         public static final int tabMode=0x7f0a000b;
         public static final int title=0x7f0a0027;
-        public static final int tutorial=0x7f0a0057;
+        public static final int tutorial=0x7f0a0053;
         public static final int up=0x7f0a0008;
         public static final int useLogo=0x7f0a0012;
         public static final int withText=0x7f0a001a;
@@ -1429,9 +1428,10 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f04001e;
     }
     public static final class menu {
-        public static final int menu_help_tutorial=0x7f0e0000;
-        public static final int menu_home=0x7f0e0001;
-        public static final int menu_main=0x7f0e0002;
+        public static final int menu_file_list=0x7f0e0000;
+        public static final int menu_help_tutorial=0x7f0e0001;
+        public static final int menu_home=0x7f0e0002;
+        public static final int menu_main=0x7f0e0003;
     }
     public static final class mipmap {
         public static final int ic_launcher=0x7f030000;
@@ -1460,19 +1460,21 @@ containing a value of this type.
         public static final int buttonClearText=0x7f0c0014;
         public static final int buttonDelText=0x7f0c0015;
         public static final int buttonExportMathText=0x7f0c0016;
-        public static final int buttonHomeText=0x7f0c0017;
-        public static final int buttonNewText=0x7f0c0018;
-        public static final int buttonOpenText=0x7f0c0019;
-        public static final int buttonSaveCodeText=0x7f0c001a;
-        public static final int buttonTypesetText=0x7f0c001b;
-        public static final int hello_world=0x7f0c001c;
-        public static final int homeInstructions=0x7f0c001d;
-        public static final int ip_addr=0x7f0c001e;
-        public static final int title_activity_help_tutorial=0x7f0c001f;
-        public static final int title_activity_home=0x7f0c0020;
-        public static final int tutorial1Text=0x7f0c0021;
-        public static final int tutorial2Text=0x7f0c0022;
-        public static final int tutorial3Text=0x7f0c0023;
+        public static final int buttonHelpText=0x7f0c0017;
+        public static final int buttonHomeText=0x7f0c0018;
+        public static final int buttonNewText=0x7f0c0019;
+        public static final int buttonOpenText=0x7f0c001a;
+        public static final int buttonRenameText=0x7f0c001b;
+        public static final int buttonSaveCodeText=0x7f0c001c;
+        public static final int buttonTypesetText=0x7f0c001d;
+        public static final int hello_world=0x7f0c001e;
+        public static final int homeInstructions=0x7f0c001f;
+        public static final int ip_addr=0x7f0c0020;
+        public static final int title_activity_help_tutorial=0x7f0c0021;
+        public static final int title_activity_home=0x7f0c0022;
+        public static final int tutorial1Text=0x7f0c0023;
+        public static final int tutorial2Text=0x7f0c0024;
+        public static final int tutorial3Text=0x7f0c0025;
     }
     public static final class style {
         /**  Customize your theme here. 
