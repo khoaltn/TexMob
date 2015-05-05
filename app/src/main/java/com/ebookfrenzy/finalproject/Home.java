@@ -7,9 +7,12 @@ import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -82,6 +85,7 @@ public class Home extends ActionBarActivity {
                 android.R.layout.simple_selectable_list_item, myFiles);
 
         list.setAdapter(adapter);
+        registerForContextMenu(list);
     }
 
 
@@ -99,11 +103,12 @@ public class Home extends ActionBarActivity {
     }
 
     // Open chosen file when the user presses Open.
-    public void openExisting(View v) {
+    public void openExisting(long index) {
         list = (ListView) findViewById(R.id.list);
+        final int openedFileIndex = (int) index;
 
         // to open existing file
-        TextView selectedFile = (TextView) list.getChildAt(list.getCheckedItemPosition());
+        TextView selectedFile = (TextView) list.getChildAt(openedFileIndex);
         if (selectedFile != null) {
             String fileName = selectedFile.getText().toString();
             File existingFile = new File(directory.getPath(), fileName);
@@ -121,10 +126,9 @@ public class Home extends ActionBarActivity {
     }
 
     // Delete chosen file when the user presses Delete.
-    public void deleteFile(View v) {
+    public void deleteFile(long index) {
         list = (ListView) findViewById(R.id.list);
-        int deletedFileIndex = list.getCheckedItemPosition();
-
+        int deletedFileIndex = (int) index;
         TextView selectedFile = (TextView) list.getChildAt(deletedFileIndex);
 
         if (selectedFile != null) {
@@ -150,9 +154,9 @@ public class Home extends ActionBarActivity {
     }
 
     // Rename chosen file when user presses Rename.
-    public void renameFile(View v) {
+    public void renameFile(long index) {
         list = (ListView) findViewById(R.id.list);
-        final int renamedFileIndex = list.getCheckedItemPosition();
+        final int renamedFileIndex = (int) index;
         final TextView selectedFile = (TextView) list.getChildAt(renamedFileIndex);
 
         if (selectedFile != null) {
@@ -214,6 +218,32 @@ public class Home extends ActionBarActivity {
         return false;
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_file_list, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.open:
+                openExisting(info.id);
+                return true;
+            case R.id.rename:
+                renameFile(info.id);
+                return true;
+            case R.id.delete:
+                deleteFile(info.id);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
     // Check for external storage
     public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
@@ -249,5 +279,4 @@ public class Home extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

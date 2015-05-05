@@ -7,7 +7,7 @@
     <string name="SampleValue">Sample</string>
     <string name="HintLatexInput">Type LaTeX here...</string>
     <string name="title_activity_home">Home</string>
-    <string name="homeInstructions">Create a new file or \n Choose an existing one...</string>
+    <string name="homeInstructions">Create new \n or \n long-click on an existing file on the left for more options.</string>
     <string name="buttonDelText">Delete</string>
     <string name="buttonOpenText">Open</string>
     <string name="buttonNewText">New</string>
@@ -20,7 +20,7 @@
 
     <!-- Tutorial instructions -->
     <string name="tutorial1Text">
-        First, create a new file or choose an existing one from the list on your left to open and edit, or to delete it.</string>
+        First, create a new file or choose an existing one from the list on your left to open, rename, or to delete it.</string>
     <string name="tutorial2Text">
         Type your LaTeX code where indicated.
         Press Save Code to save your changes in the code.
@@ -30,4 +30,6 @@
         Press Export to save the image to your Photos.
         Press Home to go back to Home screen.
     </string>
+    <string name="buttonRenameText">Rename</string>
+    <string name="buttonHelpText">Help</string>
 </resources>
