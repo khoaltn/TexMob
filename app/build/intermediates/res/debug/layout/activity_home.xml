@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -7,47 +7,72 @@
     tools:context="com.ebookfrenzy.finalproject.Home"
     android:background="#1C1C1C">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout">
 
         <ListView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/fileList"
+            android:layout_height="fill_parent"
+            android:id="@+id/list"
             android:layout_weight="1"
             android:scrollingCache="true"
             android:smoothScrollbar="true"
-            android:clickable="false"
             android:choiceMode="singleChoice"
-            android:background="#FFFFFF" />
+            android:background="#FFFFFF"
+            android:clickable="true"
+            android:listSelector="#848484"
+            android:fastScrollAlwaysVisible="false"
+            android:divider="@color/material_blue_grey_800"
+            android:dividerHeight="@dimen/abc_control_inset_material"
+            android:fastScrollEnabled="true" />
 
         <GridLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_gravity="right">
+            android:layout_gravity="right"
+            android:paddingLeft="@dimen/abc_action_bar_default_padding_material">
 
             <Button
-                style="@style/AppTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Help"
-                android:id="@+id/buttonHelp"
-                android:layout_above="@+id/linearLayout"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
+                android:text="Rename"
+                android:id="@+id/buttonRename"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:background="#1C1C1C"
+                android:textColor="#FFFFFF"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:layout_gravity="center_horizontal"
+                android:onClick="renameFile" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonOpenText"
+                android:id="@+id/buttonOpen"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:background="#1C1C1C"
+                android:textColor="#FFFFFF"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:nestedScrollingEnabled="false"
+                android:onClick="openExisting" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonDelText"
+                android:id="@+id/buttonDel"
                 android:layout_row="0"
                 android:layout_column="2"
                 android:background="#1C1C1C"
-                android:textColor="#848484"
-                android:textStyle="italic"
-                android:onClick="openHelpTutorial" />
+                android:textColor="#FFFFFF"
+                android:layout_columnWeight="1"
+                android:clickable="true"
+                android:layout_gravity="center_horizontal"
+                android:onClick="deleteFile" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -73,34 +98,30 @@
                 android:background="#1C1C1C"
                 android:textColor="#FFFFFF"
                 android:layout_columnWeight="1"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:onClick="openNew"
+                android:clickable="true"
+                android:nestedScrollingEnabled="false" />
 
             <Button
+                style="@style/AppTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/buttonOpenText"
-                android:id="@+id/buttonOpen"
-                android:layout_row="2"
-                android:layout_column="1"
-                android:background="#1C1C1C"
-                android:textColor="#FFFFFF"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center_horizontal" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/buttonDelText"
-                android:id="@+id/buttonDel"
+                android:text="Help"
+                android:id="@+id/buttonHelp"
+                android:layout_above="@+id/linearLayout"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_row="2"
                 android:layout_column="2"
                 android:background="#1C1C1C"
-                android:textColor="#FFFFFF"
-                android:layout_columnWeight="1" />
+                android:textColor="#848484"
+                android:textStyle="italic"
+                android:onClick="openHelpTutorial"
+                android:clickable="true" />
 
         </GridLayout>
 
-    </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
 <!-- From: file:/Users/madmax/src/FinalProject/app/src/main/res/layout/activity_home.xml -->
