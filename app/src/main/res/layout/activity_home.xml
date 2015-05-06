@@ -13,7 +13,7 @@
             android:layout_height="fill_parent"
             android:id="@+id/list"
             android:layout_weight="1"
-            android:scrollingCache="true"
+            android:scrollingCache="false"
             android:smoothScrollbar="true"
             android:choiceMode="singleChoice"
             android:background="#FFFFFF"

@@ -107,10 +107,11 @@ public class Home extends ActionBarActivity {
         list = (ListView) findViewById(R.id.list);
         final int openedFileIndex = (int) index;
 
+        String tmp = adapter.getItem(openedFileIndex);
+
         // to open existing file
-        TextView selectedFile = (TextView) list.getChildAt(openedFileIndex);
-        if (selectedFile != null) {
-            String fileName = selectedFile.getText().toString();
+        if (!tmp.equals("")) {
+            String fileName = tmp;
             File existingFile = new File(directory.getPath(), fileName);
 
             if (!existingFile.exists() || fileName.equals("No files found")) {
@@ -129,11 +130,12 @@ public class Home extends ActionBarActivity {
     public void deleteFile(long index) {
         list = (ListView) findViewById(R.id.list);
         int deletedFileIndex = (int) index;
-        TextView selectedFile = (TextView) list.getChildAt(deletedFileIndex);
 
-        if (selectedFile != null) {
+        String tmp = adapter.getItem(deletedFileIndex);
+
+        if (!tmp.equals("")) {
             try {
-                String fileName = selectedFile.getText().toString();
+                String fileName = tmp;
                 File trash = new File(directory.getPath(), fileName);
 
                 if (!trash.exists()) {
@@ -157,9 +159,10 @@ public class Home extends ActionBarActivity {
     public void renameFile(long index) {
         list = (ListView) findViewById(R.id.list);
         final int renamedFileIndex = (int) index;
-        final TextView selectedFile = (TextView) list.getChildAt(renamedFileIndex);
 
-        if (selectedFile != null) {
+        final String tmp = adapter.getItem(renamedFileIndex);
+
+        if (!tmp.equals("")) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
             final EditText input = new EditText(builder.getContext());
 
@@ -169,7 +172,7 @@ public class Home extends ActionBarActivity {
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String oldName = selectedFile.getText().toString();
+                    String oldName = tmp;
                     File renamedFile = new File(directory.getPath(), oldName);
 
                     if (!renamedFile.exists()) {
